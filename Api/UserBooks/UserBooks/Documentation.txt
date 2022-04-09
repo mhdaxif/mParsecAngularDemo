@@ -1,0 +1,21 @@
+﻿
+
+//Asp.Net Core Db Commands
+
+1.Adding a Migration
+
+dotnet ef migrations add  initial
+
+2.Update Database
+
+dotnet ef database update
+
+When you will create a new entity/model then run the following command again:
+
+ dotnet ef database update EmployeModel.
+
+
+Note:All the above commands run in the Package Manager Console(PMC).
+
+
+

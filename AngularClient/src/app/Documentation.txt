@@ -1,0 +1,26 @@
+
+
+            =========Steps to Create your first application using angular CLI:========
+
+
+            Step-1: Install angular cli
+
+                npm install - g @angular/cli
+
+            Step-2: Create new project by this command
+
+                ng new myNewApp
+
+            Step-3: Go to your project directory
+
+                cd myNewApp
+
+            Step-4: Run server and see your application in action
+
+                ng s
+
+            Step-5 Click on 
+
+                http://localhost:4200
+
+
