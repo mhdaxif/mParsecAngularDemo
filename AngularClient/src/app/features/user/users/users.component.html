@@ -1,0 +1,64 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+	<div *ngIf="shwoSuccess">
+		<div class="alert alert-info">
+			<strong class="default"><i class="fa fa-road"></i> </strong> User deleted successfully
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="main-box clearfix">
+				<div class="table-responsive">
+					<table class="table user-list">
+						<thead>
+							<tr>
+								<th><span>User</span></th>
+								<th><span> User name </span></th>
+								<th><span>Email</span></th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let x of userList">
+								<td bulb>
+									<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+									<a [routerLink]="'/users/view/'+ x.id" class="user-link"> {{ x?.name }} </a>
+								</td>
+								<td>
+									{{ x.userName }}
+								</td>
+								<td>
+									<a href="#"> {{ x?.email | emailMask }} </a>
+								</td>
+
+								<td style="width: 20%;">
+									<a [routerLink]="'/users/update/'+ x.id" class="table-link">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									<a (click)="deleteUser(x.id)" class="table-link danger">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row gutters mt-3">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<div class="float-end">
+				<a [routerLink]="'/users/add'" type="button" id="submit" name="submit" class="btn btn-primary"> Add user </a>
+			</div>
+		</div>
+	</div>
+</div>
