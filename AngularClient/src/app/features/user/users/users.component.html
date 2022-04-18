@@ -1,6 +1,6 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
-	<div *ngIf="shwoSuccess">
+	<div *ngIf="shwoSuccess == true">
 		<div class="alert alert-info">
 			<strong class="default"><i class="fa fa-road"></i> </strong> User deleted successfully
 		</div>
@@ -21,7 +21,8 @@
 						</thead>
 						<tbody>
 							<tr *ngFor="let x of userList">
-								<td bulb>
+								<!-- <td bulb> -->
+								<td>
 									<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
 									<a [routerLink]="'/users/view/'+ x.id" class="user-link"> {{ x?.name }} </a>
 								</td>
@@ -29,7 +30,7 @@
 									{{ x.userName }}
 								</td>
 								<td>
-									<a href="#"> {{ x?.email | emailMask }} </a>
+									<a href="#"> {{ x?.email }} </a>
 								</td>
 
 								<td style="width: 20%;">

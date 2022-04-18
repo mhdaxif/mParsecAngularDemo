@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/shared/models/models';
 import { environment } from 'src/environments/environment';
 
@@ -13,7 +14,7 @@ export class ViewUserComponent implements OnInit {
 
   user: User | undefined;
   id: any;
-  constructor(private http: HttpClient, private activateRoute: ActivatedRoute) {
+  constructor(private userServie: UserService, private activateRoute: ActivatedRoute) {
     activateRoute.params.subscribe(x => {
       this.id = x['id'];
     })
@@ -24,7 +25,7 @@ export class ViewUserComponent implements OnInit {
   }
 
   getUser() {
-    let req$ = this.http.get<User>(`${environment.url}/api/users/${this.id}`);
+    let req$ = this.userServie.getUser(this.id);
 
     req$.subscribe(response => {
       this.user = response;

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/shared/models/models';
 import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/core/services/user.service';
+import { BookService } from 'src/app/core/services/book.service';
 
 @Component({
   selector: 'app-users',
@@ -12,24 +14,34 @@ export class UsersComponent implements OnInit {
 
   userList: User[] = [];
   shwoSuccess = false;
-  constructor(private http: HttpClient) { }
+  constructor(private userService: UserService, private bookService: BookService) { 
+  }
   ngOnInit(): void {
     this.getUsers();
+    this.getUserBooks();
+  }
+  getUserBooks() {
+    this.bookService.getRoles().subscribe(
+      resp => {
+        console.log(resp)
+      }
+    )
   }
 
   getUsers() {
-    let req$ = this.http.get<User[]>(`${environment.url}/api/users`);
+    let req$ = this.userService.getUsers();
 
     req$.subscribe(response => {
       this.userList = response;
     },
       err => {
         console.error("error")
-      })
+      },
+      )
   }
 
   deleteUser(id: number) {
-    let req$ = this.http.delete(`${environment.url}/api/users/${id}`);
+    let req$ = this.userService.deleteUser(id);
 
     req$.subscribe(response => {
       // show success for 5 sec
