@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './core/services/user.service';
+import { HttpHeaderInterceptor } from './core/interceptors/http-header.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,10 +17,13 @@ import { UserService } from './core/services/user.service';
     AppRoutingModule
   ],
   providers: [
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpHeaderInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
- 

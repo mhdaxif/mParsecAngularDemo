@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'users' },
   { path: 'users', loadChildren: () => import('./features/user/user.module').then(x => x.UserModule) },
-  { path: 'books', loadChildren: () => import('./features/book/book.module').then(x => x.BookModule) },
+  { 
+    path: 'books', 
+    loadChildren: () => import('./features/book/book.module').then(x => x.BookModule),
+    canActivate: [AuthGuard], 
+  },
   { path: '**', component: PageNotFoundComponent },
 
 ]; @NgModule({

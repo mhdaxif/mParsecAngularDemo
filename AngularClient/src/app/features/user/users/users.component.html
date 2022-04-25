@@ -46,6 +46,12 @@
 											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
+									<a (click)="getUserBooks(x.id)" class="table-link">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-book fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
 								</td>
 							</tr>
 						</tbody>
@@ -61,5 +67,13 @@
 				<a [routerLink]="'/users/add'" type="button" id="submit" name="submit" class="btn btn-primary"> Add user </a>
 			</div>
 		</div>
+	</div>
+
+	<div>
+		<app-user-books [books]="userBooks" (onBookClick)="handleBookClick($event)"> </app-user-books>
+	</div>
+
+	<div>
+		{{ selectedBook | json }}
 	</div>
 </div>

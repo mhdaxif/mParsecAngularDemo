@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from 'src/app/shared/models/models';
+import { Book, User } from 'src/app/shared/models/models';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/core/services/user.service';
 import { BookService } from 'src/app/core/services/book.service';
@@ -14,18 +14,12 @@ export class UsersComponent implements OnInit {
 
   userList: User[] = [];
   shwoSuccess = false;
+  userBooks?: Book[];
+  selectedBook?: Book;
   constructor(private userService: UserService, private bookService: BookService) { 
   }
   ngOnInit(): void {
     this.getUsers();
-    this.getUserBooks();
-  }
-  getUserBooks() {
-    this.bookService.getRoles().subscribe(
-      resp => {
-        console.log(resp)
-      }
-    )
   }
 
   getUsers() {
@@ -57,4 +51,20 @@ export class UsersComponent implements OnInit {
       })
   }
 
+  getUserBooks(userId: number) {
+    let req$ = this.userService.getUserBooks(userId);
+
+    req$.subscribe(books => {
+      this.userBooks = books;
+    },
+      err => {
+        console.error("error")
+      })
+  }
+
+
+  handleBookClick(data: any){
+    console.log(data)
+    this.selectedBook = data.selectedBook;
+  }
 }

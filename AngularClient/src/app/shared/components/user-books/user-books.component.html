@@ -1,0 +1,14 @@
+
+<style>
+    li{
+        cursor: pointer;
+    }
+</style>
+
+<div *ngIf="books && books.length > 0"> 
+    <ul>
+        <li *ngFor="let book of books" (click)="onBookSelection(book)"> 
+            {{ book.name }}
+        </li>
+    </ul>
+</div>

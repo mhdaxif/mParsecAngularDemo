@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { User } from "src/app/shared/models/models";
+import { Book, User } from "src/app/shared/models/models";
 import { environment } from "src/environments/environment";
 
 @Injectable()
@@ -23,5 +23,9 @@ export class UserService{
     
     getUser(id: any) {
         return this.http.get<User>(`${environment.url}/api/users/${id}`);
+    }
+
+    getUserBooks(userId: number) {
+      return this.http.get<Book[]>(`${environment.url}/api/users/${userId}/books`);
     }
 }
